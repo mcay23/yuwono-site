@@ -4,18 +4,24 @@
   width: auto
   margin-left: 0.5rem
   margin-right: 0.5rem
+  overflow: hidden
 
 .card-col
   width: 100%
   margin: 0
   padding: 0
   margin-top: 0.9rem
-
-.thumbnail-hover
-  &:hover
-    opacity: 0.85
-
-.thumbnail-card
   padding-right: 0.5rem
   padding-left: 0.5rem
+  overflow: hidden
+
+.thumbnail-hover
+  img 
+    transition: transform .5s ease;
+  &:hover
+    opacity: 0.85
+    img
+      transform: scale(1.1)
+
+
 

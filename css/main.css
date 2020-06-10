@@ -146,6 +146,7 @@
   width: auto;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  overflow: hidden;
 }
 
 .card-col {
@@ -153,15 +154,25 @@
   margin: 0;
   padding: 0;
   margin-top: 0.9rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  overflow: hidden;
+}
+
+.thumbnail-hover img {
+  -webkit-transition: -webkit-transform .5s ease;
+  transition: -webkit-transform .5s ease;
+  transition: transform .5s ease;
+  transition: transform .5s ease, -webkit-transform .5s ease;
 }
 
 .thumbnail-hover:hover {
   opacity: 0.85;
 }
 
-.thumbnail-card {
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+.thumbnail-hover:hover img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 body h1 {
