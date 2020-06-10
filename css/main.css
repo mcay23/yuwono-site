@@ -1,3 +1,78 @@
+.section-light {
+  width: 100%;
+  background-image: url("/assets/marble-bg.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  opacity: 0.6;
+  text-align: center;
+}
+
+.section-light h1 {
+  color: black;
+  line-height: 3rem;
+  padding-top: 10rem;
+  padding-bottom: 8rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 0;
+  font-family: "Times", serif;
+}
+
+.section-card {
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  padding-bottom: 0.9rem;
+}
+
+.section-card h1 {
+  color: black;
+  line-height: 3rem;
+  padding-top: 10rem;
+  padding-bottom: 8rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 0;
+  font-family: "Times", serif;
+}
+
+.footer-container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-group {
+  display: block;
+  width: 100%;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+.footer-text {
+  color: white;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-group {
+  margin: 0;
+  padding: 0 0 1rem 0;
+}
+
+.icon-group .icon-item, .icon-group #fb-icon, .icon-group #linkedin-icon, .icon-group #github-icon {
+  font-size: 4rem;
+  padding: 0 1.5rem;
+  color: white;
+}
+
+.icon-group .icon-item:hover, .icon-group #fb-icon:hover, .icon-group #linkedin-icon:hover, .icon-group #github-icon:hover {
+  opacity: 0.9;
+}
+
 .navbar-container {
   display: block;
   margin: auto;
@@ -40,11 +115,13 @@
   right: 2%;
 }
 
-.navbar-brand-block {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+.navbar-brand {
+  font-family: "Balthazar", serif;
+  font-size: 1.5rem;
+}
+
+#navbar-center-brand {
+  cursor: default;
 }
 
 .navbar-toggler {
@@ -52,24 +129,48 @@
   outline: none;
 }
 
+.connect-btn {
+  margin: auto;
+}
+
 .logo-text {
   margin: 0.9rem auto;
   cursor: default;
   color: white;
+  font-family: "Balthazar", serif;
+  font-size: 1.5rem;
   text-decoration: none;
 }
 
-body {
-  background-image: url("/assets/space-bg.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #464646;
+.card-row {
+  width: auto;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.card-col {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-top: 0.9rem;
+}
+
+.thumbnail-hover:hover {
+  opacity: 0.85;
+}
+
+.thumbnail-card {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 body h1 {
   color: white;
   line-height: 5;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 /*# sourceMappingURL=main.css.map */
