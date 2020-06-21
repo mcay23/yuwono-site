@@ -1,6 +1,5 @@
 .section-light
   width: 100%
-  background-image: url('/assets/marble-bg.jpg')
   background-position: center center
   background-repeat: no-repeat
   background-attachment: fixed
@@ -10,6 +9,7 @@
     
   h1
     color: black
+    font-size: 2.5rem
     line-height: 3rem
     padding-top: 10rem
     padding-bottom: 8rem
@@ -19,4 +19,7 @@
     font-family: "Times", serif
 
     
-    
+@media (max-width: 576px)
+  .section-light
+    h1
+      font-size: 1.7rem
