@@ -67,8 +67,14 @@
   margin: 0;
 }
 
+.section-article-body h3 {
+  color: #0a0a4d;
+  font-size: 1.8rem;
+  padding-bottom: 1rem;
+}
+
 .section-article-body p {
-  font-family: "Roboto", 'sans-serif';
+  font-family: 'Noto Sans JP', 'sans-serif';
   line-height: 1.8;
   font-size: 1.4rem;
 }
