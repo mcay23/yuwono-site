@@ -1,0 +1,47 @@
+[Random Benchmark] x100
+avg-completion: 433.74 ticks.
+min-completion: 407 ticks.
+max-completion: 482 ticks.
+avg-per-node: 224.1898888888889 ticks.
+min-node: 8 ticks.
+max-node: 482 ticks.
+
+[BackToFront Benchmark] x100
+avg-completion: 581.44 ticks.
+min-completion: 547 ticks.
+max-completion: 640 ticks.
+avg-per-node: 308.61027777777775 ticks.
+min-node: 32 ticks.
+max-node: 640 ticks.
+
+[FrontToBack Benchmark] x100
+avg-completion: 684.33 ticks.
+min-completion: 630 ticks.
+max-completion: 727 ticks.
+avg-per-node: 346.8003888888889 ticks.
+min-node: 7 ticks.
+max-node: 727 ticks.
+
+[WindowMA Benchmark] x100
+avg-completion: 425.11 ticks.
+min-completion: 393 ticks.
+max-completion: 458 ticks.
+avg-per-node: 219.7356111111111 ticks.
+min-node: 9 ticks.
+max-node: 458 ticks.
+
+[WMAGroups Benchmark] x100
+avg-completion: 424.67 ticks.
+min-completion: 391 ticks.
+max-completion: 467 ticks.
+avg-per-node: 220.53344444444446 ticks.
+min-node: 9 ticks.
+max-node: 467 ticks.
+
+[SteffenModified Benchmark] x100
+avg-completion: 427.35 ticks.
+min-completion: 399 ticks.
+max-completion: 458 ticks.
+avg-per-node: 220.9698888888889 ticks.
+min-node: 7 ticks.
+max-node: 458 ticks.

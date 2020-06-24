@@ -63,7 +63,14 @@
     <div class="row section-article-top">
       <div class="col-sm-12 col-md-9 col-xl-8">
         <h2>Plane Boarding made Faster</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+        <p>
+          The coronavirus pandemic has forced airlines to rethink boarding practices, 
+          aiming to reduce aisle congestion to emphasize social distancing. Some airlines
+          have started ditching old boarding practices for more efficient methods. 
+          I modeled different boarding strategies to see which is fastest. 
+          <br>
+          Here's what I found.
+        </p>
         <br>
       </div>
     </div>
@@ -77,14 +84,107 @@
             </span>
           </p>
           <br>
-          <h3>Introduction</h3>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+          <h3>Motivation</h3>
+          <p>
+            Recently, I received an email from ANA (All Nippon Airways) that my upcoming flight
+            to the US will employ a new boarding method, separated into 6 groups. By order of entry:
+          </p>
+          <ul>
+            <li>Passenger with rear window seats</li>
+            <li>Passenger with rear middle seats</li>
+            <li>Passenger with rear aisle seats</li>
+            <li>Passenger with front window seats</li>
+            <li>Passenger with front middle seats</li>
+            <li>Passenger with front aisle seats</li>
+          </ul>
+          <p>
+            I travel quite frequently, anywhere between 6-10 separate flights each year but I have
+            never boarded an airplane this way. Allegedly, United uses a Window-Middle-Aisle method
+            but I've never encountered this on my United flights in practice.
+          </p>
+          <p>
+            Why do different airlines use different boarding methods? Faster boarding decreases
+            gate costs and delays, so why don't all airlines find and use one, fastest method?
+          </p>
           <br>
-          <h3>Methodology</h3>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+          <h3>The Model</h3>
+          <p>
+            To answer these questions, I modeled a Plane Boarding simulator.
+            I used Python since it's my go-to for visualizing and exporting data.
+            <br><br>
+            Here's what the model looks like:
+            <br><br>
+            <img src="projects/boarding/model.jpg" style="width:100%"></img>
+            <br>
+            <br>
+            This is a rough approximation of a 737, with 180 seats in 30 rows.
+            The "=" marks the aisle, the O's are empty seats, and the X's are the passengers.
+            <br><br>
+            Time is calculated in ticks. Passengers enter through the left and move through the aisle.
+            It takes one tick to move forward towards their row and they can only move if the 
+            space in front of them is empty. If they are at their target row, they 
+            take 5 ticks to store their baggage before moving into the seat. It takes another tick each to
+            move between the seats into their target seat.
+            <br><br>
+            For example, if the passenger in the figure above wanted to move to B3, they would take 2 ticks
+            to walk forward two spots, then 5 ticks to store their baggage, then another 2 ticks to move to
+            the middle seat.
+            <br><br>
+            There are some limitations to this model. First, there is no business/first class seating.
+            Second, when passengers are in their row, they can "shift" through other passengers into their
+            seat without having them make way by standing in the aisle. This may skew the results against
+            Window-Middle-Aisle boarding. 
+            <br><br>
+            I tested a total of 6 different boarding methods, and ran each method 100 times through a
+            benchmark. The benchmark records 6 different statistics:
+            <ol>
+              <li>Average number of ticks to complete the boarding process</li>
+              <li>Minimum number of ticks to complete the boarding process</li>
+              <li>Maximum number of ticks to complete the boarding process</li>
+              <li>Average number of ticks for a given passenger to be seated</li>
+              <li>Minimum number of ticks for a given passenger to be seated</li>
+              <li>Maximum number of ticks for a given passenger to be seated</li>
+            </ol>
+          </p>  
+          <br>
+          <h3>Back To Front</h3>
+          <p>
+            Back to front is the most natural way a person would think of first. The intuition is that by
+            pushing people back first, we allow more aisle space (bandwidth) to be utilized thereby 
+            increasing the throughput:
+            <br><br>
+            <video autoplay loop width=100%>
+              <source src="projects/boarding/btf.mp4" type="video/mp4">
+              Your browser does not support playing videos.
+            </video>
+            <br><br>
+            In practice, because of the way the passengers are ordered, passengers stil need to wait for
+            those in front of them to be seated so they can go forward enough to be in the correct row. This
+            means that a lot of people in the aisle are just waiting for the person in front of them, while
+            they could be storing baggage concurrently if they were at the right row.
+
+          </p>
+          <br><br>
+          <div class="code-block-container">
+            <div class="code-block">
+              <pre>
+                <code>
+                  [BackToFront Benchmark] x100
+                  avg-completion: 581.44 ticks.
+                  min-completion: 547 ticks.
+                  max-completion: 640 ticks.
+                  avg-per-node: 308.61 ticks.
+                  min-node: 32 ticks.
+                  max-node: 640 ticks.
+                </code>
+              </pre>
+            </div>
+          </div>
+
         </div>
       </div>
       <br>
+      <h3>Visualization</h3>
       <div class="row">
         <div class="col-12 col-xl-11 d-none d-md-block">
           <div class="embed-responsive embed-responsive-16by9 z-depth-1 graph-plotly">
@@ -100,67 +200,8 @@
           </a>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12 col-md-9 col-xl-8">
-          <h3>Random</h3>
-          <video autoplay loop width=100%>
-            <source src="projects/boarding/random.mp4" type="video/mp4">
-            Your browser does not support playing videos.
-          </video>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-12 col-md-9 col-xl-8">
-          <h3>Window Middle Aisle</h3>
-          <video autoplay loop width=100%>
-            <source src="projects/boarding/wma.mp4" type="video/mp4">
-            Your browser does not support playing videos.
-          </video>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-12 col-md-9 col-xl-8">
-          <h3>Window Middle Aisle Groups</h3>
-          <video autoplay loop width=100%>
-            <source src="projects/boarding/wmagroups.mp4" type="video/mp4">
-            Your browser does not support playing videos.
-          </video>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-12 col-md-9 col-xl-8">
-          <h3>Back To Front</h3>
-          <video autoplay loop width=100%>
-            <source src="projects/boarding/btf.mp4" type="video/mp4">
-            Your browser does not support playing videos.
-          </video>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-12 col-md-9 col-xl-8">
-          <h3>Front To Back</h3>
-          <video autoplay loop width=100%>
-            <source src="projects/boarding/ftb.mp4" type="video/mp4">
-            Your browser does not support playing videos.
-          </video>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-12 col-md-9 col-xl-8">
-          <h3>Steffen Optimal</h3>
-          <video autoplay loop width=100%>
-            <source src="projects/boarding/steffen.mp4" type="video/mp4">
-            Your browser does not support playing videos.
-          </video>
-        </div>
-      </div>
-    </div>  
     <br><br><br>
+    </div>
     <footer class="footer">
       <div class="footer-container bg-dark">
         <div class="footer-group">

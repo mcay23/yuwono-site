@@ -79,6 +79,11 @@
   font-size: 1.4rem;
 }
 
+.section-article-body ul, .section-article-body ol {
+  font-size: 1.4rem;
+  line-height: 2.0;
+}
+
 @media (min-width: 768px) {
   .section-article-body {
     padding-left: 4rem;
@@ -334,6 +339,19 @@
   .graph-plotly {
     width: 85%;
   }
+}
+
+.code-block {
+  margin-left: 3rem;
+}
+
+.code-block pre code {
+  white-space: pre-line;
+  font-size: 1.4rem;
+}
+
+.code-block-container {
+  background-color: #eee;
 }
 
 body h1 {
