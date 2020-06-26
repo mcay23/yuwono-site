@@ -31,17 +31,17 @@ min-node: 9 ticks.
 max-node: 458 ticks.
 
 [WMAGroups Benchmark] x100
-avg-completion: 424.67 ticks.
-min-completion: 391 ticks.
-max-completion: 467 ticks.
-avg-per-node: 220.53344444444446 ticks.
-min-node: 9 ticks.
-max-node: 467 ticks.
+avg-completion: 457.96 ticks.
+min-completion: 424 ticks.
+max-completion: 485 ticks.
+avg-per-node: 242.76733333333334 ticks.
+min-node: 24 ticks.
+max-node: 485 ticks.
 
-[SteffenModified Benchmark] x100
-avg-completion: 427.35 ticks.
-min-completion: 399 ticks.
-max-completion: 458 ticks.
-avg-per-node: 220.9698888888889 ticks.
-min-node: 7 ticks.
-max-node: 458 ticks.
+[SteffenOptimal Benchmark] x1
+avg-completion: 255 ticks.
+min-completion: 255 ticks.
+max-completion: 255 ticks.
+avg-per-node: 139.5 ticks.
+min-node: 24 ticks.
+max-node: 255 ticks.
