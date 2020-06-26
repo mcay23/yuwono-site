@@ -21,10 +21,10 @@
     <title>ProjectSpace</title>
   </head>
   <body>
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand absolute d-none d-md-block" href="#">ProjectSpace</a>
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="main-navbar">
+      <a class="navbar-brand absolute d-none d-md-block" href="javascript:undefined">ProjectSpace</a>
       <div class="absolute center-absolute">
-        <a class="navbar-brand d-block d-md-none center" id="navbar-center-brand" href="#">ProjectSpace</a>
+        <a class="navbar-brand d-block d-md-none center" id="navbar-center-brand" href="javascript:undefined">ProjectSpace</a>
       </div>      
       <div class="navbar-collapse collapse" id="navbar">
         <div class="navbar-container">
@@ -231,6 +231,10 @@
             Already, even with the disadvantage, we see better numbers than Back To Front.
             On average, Window-Middle-Aisle takes 425 ticks vs 581 ticks by Back To Front,
             or a 27% speed up.
+            <br><br>
+            The key here is concurrent stowing. Since stowing baggage takes up most of the
+            boarding time, we want to have as much people as possible across the aisle 
+            stowing baggage at the same time.
           </p>
           <br>
           <h3>Window-Middle-Aisle Groups</h3>
@@ -268,6 +272,7 @@
             ANA's new method turned out to be slower by around 7.2% than if 
             they employed Window-Middle-Aisle without the rear or front grouping.
           </p>
+          <br>
           <h3>Random</h3>
           <p>
             Everyone boards at the same time, without the need of groups. This means the order of
@@ -304,11 +309,14 @@
             Southwest Airlines uses a unique boarding method. They allow passengers that board the
             plane to select their seating on a first come, first served basis. This basically acts
             like completely random boarding, except the first few passengers are likely to board the
-            frontmost seats, as they are usually the most desirable. In effect, Southwest's method acts
-            like a Front-To-Back at first, then converges into a random process. Unsurprisingly, Southwest
-            is consistently and significantly faster than other airlines in terms of boarding taking
-            only 14 minutes compared to back-to-front (24 mins) in an experiment done in Gatwick Airport.
+            frontmost seats, as they are usually the most desirable. 
+            <br><br>
+            In effect, Southwest's method acts like a Front-To-Back at first, then converges into a 
+            random process. Unsurprisingly, Southwest is consistently and significantly faster than other 
+            airlines at boarding, taking only 14 minutes compared to back-to-front (24 mins) in an 
+            experiment done in Gatwick Airport.
           </p>
+          <br>
           <h3>Steffen's Method</h3>
           <p>
             Finally, we test Steffen's method, proposed by Dr. Jason Steffen of UNLV, who claimed would
@@ -340,6 +348,9 @@
           </div>
           <br>
           <p>
+            Steffen's method prioritizes concurrent stowing, parallelizing the process such that 
+            the same amount of the work is done in a condensed time frame.
+
             However, as you might have observed in the animation, Steffen's method require a precise
             ordering; each passenger needs to board at the exact order for it to work, essentially creating
             180 groups for the 180 passengers in our model. In a real world situation, it's difficult to
@@ -350,11 +361,13 @@
           <p>
             Let's visualize how the different boarding methods stack against each other.  I benched each
             method 100 times and recorded the time it takes for every passenger to be seated.
-            Then, I graphed a histogram of these values normalized for probability. The x-axis represents 
-            the amount of time (in ticks) it takes a given passenger to be seated. The y-axis represents 
-            the probability that any given passenger is seated within the bucket in the x-axis. For example,
-            if in a back-to-front boarding, the x-values of 150-155 has the y-value of 1.5, then a given 
-            passenger boarding this way will have a 1.5% chance of being seated within 150-155 ticks. 
+            Then, I graphed a histogram of these values normalized for probability. 
+            <br><br>
+            The x-axis represents the amount of time (in ticks) it takes a given passenger to be seated. 
+            The y-axis represents the probability that any given passenger is seated within the bucket 
+            in the x-axis. For example, if in a back-to-front boarding, the x-values of 150-155 has the 
+            y-value of 1.5, then a given passenger boarding this way will have a 1.5% chance of being 
+            seated within 150-155 ticks. 
           </p>
         </div>
       </div>
@@ -366,7 +379,9 @@
               <br>
               <p>
                 This graph is interactive. Click on the legend items to toggle them on or off,
-                or double-click to isolate a single item.
+                or double-click to isolate a single item. This graph may run a little slow if
+                 you're on an older computer or a tablet. If so, click this 
+                <a href='projects/boarding/graph.png'>link</a> for a static version of this graph.
               </p>
               <br>
             </div>
@@ -408,6 +423,66 @@
       </div>
       <div class="row">
         <div class="col-sm-12 col-md-9 col-xl-8">
+          <h3>Observations</h3>
+          <p>
+            If you're on desktop, try isolating the Front to Back graph in the visualization.
+            We can see six distinct peaks which correspond to the 6 boarding groups. However, if
+            we switch to Back to Front, we only five peaks, even though we also have six groups.
+            <br><br>
+            Going back to the Back to Front animation, it becomes clear that the five
+            peaks don't correspond to the groups, but are instead spikes in which two adjacent boarding
+            groups are able to board at the same time. Peak one occurs when group 1 has pushed further
+            enough that group 2 can start boarding before group 1 has finished, and the other groups
+            correspond to the same event with group 2 & 3, then groups 3 & 4, and so on, creating five
+            peaks in the graph. 
+            <br><br>
+            We can see the same happening in WMA Groups (ANA's method), where most
+            of the boarding happens in the middle of the process, where the rear group has pushed enough
+            back that the front group can start boarding.
+          </p>
+          <br>
+          <h3>Final Thoughts</h3>
+          <p>
+            Although Window Middle Aisle boarding is clearly superior to the traditional Back to Front,
+            people who travel in groups would be largely inconvenienced if they have to board separately.
+            However, since groups sit next to each other, allowing them to board with whoever has the
+            earliest group can preserve the order of entry by preventing seat shuffling.
+            <br><br>
+            Earlier, I said that it's unreasonable to expect people to adhere to Steffen's method, lining
+            up in a specific order before boarding the plane. However, this only applies with the assumption
+            that people are assigned their seats during check-in. If we instead change seat assignment such
+            that you are assigned your seat as you enter the plane when you get your passport scanned, we
+            assign entering passengers the correct seat such that the order of entry follows Steffen's method.
+            <br><br>
+            Of course, this comes with drawback that groups wouldn't be able to sit together if they enter
+            together, but with a few modifications to accomodate this exception, there is great potential for
+            substantial speed-ups. 
+            <br><br>
+            Whether passengers will tolerate having the freedom to choose their seats taken away from them is 
+            another argument. These days, I usually am able to select my seats right after I buy my tickets, 
+            which i personally like. If we then take into account business/first class, pre-boarding stasuses, 
+            loyalty members, and what-not, all these extra considerations will bog down painstakingly crafted
+            optimal process.
+          </p>
+          <br>
+          <h3>Where do we go from here?</h3>
+          <p>
+            There's a bunch of things I want to improve with in my model to create more interesting methods.
+            First, seat shuffling should be implemented to increase accuracy and remove the current 
+            Window-Middle-Aisle disadvantage. Next, allowing passengers to be bundled into a travelling group 
+            will let us crunch numbers that more represent real-life boarding.
+            <br><br>
+            Finally, if we assign each passenger a certain number of carry-on baggage to bring inside the plane,
+            we can vary how much time it takes them to stow baggage. This will allow us to create methods which
+            work around the heavy carriers by distribing their seating in a way that maximizes concurrent stowing.
+          </p>
+          <br>
+          <h3>Run it Yourself</h3>
+          <p>
+            If you would like to run the simulator yourself, the code is available in my Github
+            <a href="https://github.com/mcay23/BoardingSimulator" target="_blank">here.</a>
+          </p>
+          <br>
           <h3>References</h3>
           <p>
             <ol>
