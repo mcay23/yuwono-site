@@ -79,7 +79,7 @@
   font-size: 1.4rem;
 }
 
-.section-article-body ul, .section-article-body ol {
+.section-article-body ul li, .section-article-body ol li {
   font-size: 1.4rem;
   line-height: 2.0;
 }

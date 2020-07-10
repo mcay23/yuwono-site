@@ -1,0 +1,6 @@
+sizes in km^2
+
+Tokyo Station - 124
+Berlin Central - 32
+London Waterloo - 53
+NY Grand Central - 72
