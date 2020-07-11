@@ -276,8 +276,8 @@
 }
 
 .thumbnail-hover:hover img {
-  -webkit-transform: scale(1.08);
-          transform: scale(1.08);
+  -webkit-transform: scale(1.07);
+          transform: scale(1.07);
 }
 
 .nav-pagination {
