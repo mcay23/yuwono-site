@@ -361,6 +361,15 @@
   background-color: #eee;
 }
 
+.contact-container {
+  display: block;
+  margin: auto;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 body h1 {
   line-height: 5;
   -webkit-touch-callout: none;

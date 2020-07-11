@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172408096-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-172408096-1');
+    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,10 +17,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href='css/main.css'>
+    <link rel="stylesheet" href='css/contact.css'>
+
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Balthazar' rel='stylesheet'>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">    <title>ProjectSpace</title>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico"/>
     <title>ProjectSpace</title>
   </head>
@@ -55,18 +68,36 @@
           </li>
       </ul>
     </nav>
-    <div class="section-light">
-      <h1>Contact</h1>
+    <div class="section-light" style="background-image: url('assets/ocean-bg.jpg');">
+      <h1 style="font-style: italic;">
+        Contact
+      </h1>
     </div>
-    <div class="section-white">
-      <div class="section-white-padding">
-        <h2>Marcel Alan Yuwono</h2>
-        <p>Contact: marcelyuwono23@gmail.com</p>
-        <p>CS Senior @ UNC-Chapel Hill</p>
-      </div>  
+    <div class="contact-container">
+      <div class="row">
+        <div class="col-sm-0 col-sm-3">
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/marcelyuwono23@gmail.com" method="post">
+            <fieldset id="fs-frm-inputs">
+              <label for="full-name">Full Name</label>
+              <input type="text" name="name" id="full-name" placeholder="Name" required="">
+              <label for="email-address">Email Address</label>
+              <input type="email" name="_replyto" id="email-address" placeholder="Email" required="">
+              <label for="message">Message</label>
+              <textarea rows="5" name="message" id="message" placeholder="Enter your message" required=""></textarea>
+              <input type="hidden" name="_subject" id="email-subject" value="yuwono-site contact">
+            </fieldset>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
     </div>
+    
+    
+    
     <footer class="footer">
-      <div class="footer-container bg-dark" style="margin-top: 3rem;">
+      <div class="footer-container bg-dark">
         <div class="footer-group">
           <h1 class="footer-text">Let's Connect.</h1>
           <div class="icon-group">
