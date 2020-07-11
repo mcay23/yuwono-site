@@ -4,3 +4,6 @@ Tokyo Station - 124
 Berlin Central - 32
 London Waterloo - 53
 NY Grand Central - 72
+Singapore DG - 116
+Gare de Lyon - 30
+Copenhagen Central - 39
