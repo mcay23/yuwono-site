@@ -264,7 +264,13 @@
             What if we map larger, 1-hour, 2-hour or even 3-hour isochrones? 
             30-minute maps are disadvantageous to long-distance trains, since it often takes more than 
             30 minutes from one station to another. They pick up speed towards the middle, and have a 
-            long-term payoff. These are the 2 main questions that I'd like to revisit.
+            long-term payoff.
+          </p>
+          <p>
+            The TravelTime API didn't have data for several countries that I wanted to visit, including
+            China and South Korea. OpenRouteService has a free isochrone API, but not for public transport.
+            There's nothing much I can do at the moment without writing my own isochrone library, which might
+            be a future idea.
           </p>
           <br>
           <h3>References</h3>
@@ -282,7 +288,26 @@
         </div>
       </div>
       <br><br>
+      <div class="row">
+        <div class="col-sm-12">
+          <div id="disqus_thread"></div>
+          <script>
+          var disqus_config = function () {
+          this.page.url = 'https://marcelalanyuwono.com/isochrones.html'; 
+          this.page.identifier = 'isochrone-comment';
+          };
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://marcelalanyuwono-1.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </div>
     </div>
+    <br><br>
     <footer class="footer">
       <div class="footer-container bg-dark">
         <div class="footer-group">
