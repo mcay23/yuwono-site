@@ -1,0 +1,10 @@
+	rep      dem
+health 0.4347 vs 2.900
+trump 3.84 vs 4.92
+says 1.479 vs 0.458
+foxnews 1.843 vs 0.004
+tucker 1.67 vs 0.062
+
+to 29.425 vs 39.755
+and 18.675 vs 15.846
+we 5.276 vs 10.630

@@ -1,0 +1,3 @@
+https://programminghistorian.org/en/lessons/introduction-to-stylometry-with-python
+https://en.wikipedia.org/wiki/The_Federalist_Papers
+https://en.wikipedia.org/wiki/Principal_component_analysis

@@ -117,32 +117,6 @@
             the efficiency of mass transport systems.
           </p>  
           <br>
-          <h3>Methodology</h3>
-          <p>
-            I used the <a href="traveltime.com" target="_blank">TravelTime API</a> to create 30-minute isochrones
-            by public transport only. The start time is standardized to be Friday, 7/10/2020 at 7 AM, 
-            a common time when people depart for work. Then I used <a href="https://qgis.org/en/site/" target="_blank">QGIS</a>
-            to frame and mask the polygons before moving on to Adobe Illustrator to stylize the finishing touches.
-          </p>
-          <p>
-            I combed through different listicles to see which cities had the best public transport systems and 
-            selected a few to map. Then, within each city, I selected a major transit station that best fit these
-            2 criteria:
-          </p>
-          <ol>
-            <li>High passenger traffic</li>
-            <li>Close to the centroid of the city</li>
-          </ol>
-          <p>
-            Most sources, in deciding the "best" systems include different criteria such as 
-            cleanliness and comfort, but today, we're only concerned about distance and time. The idea is 
-            that the most efficiently placed stations are those that can reach the largest area in a 
-            set amount of time. To do this, we map a 30-minute public transit isochrone from the stations, 
-            then calculate the area of the isochrone map.
-            <br>
-            Let's take a look at the results, from lowest to highest coverage.
-          </p>
-          <br>
           <div class="code-block-container">
             <div class="code-block">
               <br>
@@ -166,89 +140,6 @@
               </a>
             </div>
           </div>
-          <br><br>
-          <h3>Berlin Central Station</h3>
-          <p>
-            With 16 tracks and 7 platforms, Berlin Hauptbahnhof serves 1,800 trains and around 350,000
-            passengers every day. Services include the S-Bahn, U-Bahn, trams and long distance trains.
-          </p>
-          <div class="row">
-            <div class="col-12 graph-img-boarding">
-              <a href="projects/isochrones/raw/berlin.png" target="_blank">
-                <img src="projects/isochrones/berlin.jpg"></img>
-              </a>
-            </div>
-          </div>
-          <br><br>
-          <h3>Copenhagen Central Station</h3>
-          <p>
-            The largest railway station in Denmark, Copenhagen Central Station was built in 1847 and 
-            serves over 38 million passengers every year. It serves the Copenhagen Metro, S-Train, and 
-            the Danske Statsbaner trains.
-          </p>
-          <div class="row">
-            <div class="col-12 graph-img-boarding">
-              <a href="projects/isochrones/raw/copenhagen.png" target="_blank">
-                <img src="projects/isochrones/copenhagen.jpg"></img>
-              </a>
-            </div>
-          </div>
-          <br></br>
-          <h3>Waterloo Station</h3>
-          <p>
-            Founded in 1848, Waterloo station is the busiest station in the UK, serving over a hundred
-            million passengers with 24 platforms. The station serves the South Western Main Line and the 
-            West of England Main Line.
-          </p>
-          <div class="row">
-            <div class="col-12 graph-img-boarding">
-              <a href="projects/isochrones/raw/london.png" target="_blank">
-                <img src="projects/isochrones/london.jpg"></img>
-              </a>
-            </div>
-          </div>
-          <br></br>
-          <h3>Grand Central Station</h3>
-          <p>
-            One of the most iconic stations in the heart of New York, Grand Central serves 67 million
-            passengers every year with a staggering 44 platforms and 67 tracks—the most at any station 
-            in the world. "Grand Central Station" is actually a misnomer, its official name is 
-            "Grand Central Terminal."
-          </p>
-          <div class="row">
-            <div class="col-12 graph-img-boarding">
-              <a href="projects/isochrones/raw/newyork.png" target="_blank">
-                <img src="projects/isochrones/newyork.jpg"></img>
-              </a>
-            </div>
-          </div>
-          <br></br>
-          <h3>Dhoby Ghaut Station</h3>
-          <p>
-            Located at Orchard Road in Singapore, this MRT station is the only station in the city to connect 
-            three different metro lines: the North-South line, the North-East line, and the Circle line.
-          </p>
-          <div class="row">
-            <div class="col-12 graph-img-boarding">
-              <a href="projects/isochrones/raw/singapore.png" target="_blank">
-                <img src="projects/isochrones/singapore.jpg"></img>
-              </a>
-            </div>
-          </div>
-          <br></br>
-          <h3>Tokyo Station</h3>
-          <p>
-            Tokyo station serves 4,000 trains daily and 500,000 daily passengers in perhaps one of the most 
-            intricate mass transit systems in the world. The station serves many different lines such as the 
-            "Shinkansen" bullet trains, the JR Central lines, and the Tokyo Metro.
-          </p>
-          <div class="row">
-            <div class="col-12 graph-img-boarding">
-              <a href="projects/isochrones/raw/tokyo.png" target="_blank">
-                <img src="projects/isochrones/tokyo.jpg"></img>
-              </a>
-            </div>
-          </div>
           <br></br>
           <h3>Final Thoughts</h3>
           <p>
@@ -257,7 +148,7 @@
             needs. While wider sprawls might need greater coverage, smaller cities can be adequately served by 
             a smaller system.
           </p>
-          <br>
+          <br></br>
           <h3>Next Steps</h3>
           <p>
             How much population do these systems cover? 
@@ -277,12 +168,6 @@
           <p>
             <ol>
               <li><a href="https://en.wikipedia.org/wiki/Gare_de_Lyon" target="_blank">Gare de Lyon, Wikipedia EN</a></li>
-              <li><a href="https://en.wikipedia.org/wiki/Berlin_Hauptbahnhof" target="_blank">Berlin Hauptbahnhof, Wikipedia EN</a></li>
-              <li><a href="https://en.wikipedia.org/wiki/Copenhagen_Central_Station" target="_blank">Copenhagen Central Station, Wikipedia EN</a></li>
-              <li><a href="https://en.wikipedia.org/wiki/London_Waterloo_station" target="_blank">London Waterloo Station, Wikipedia EN</a></li>
-              <li><a href="https://en.wikipedia.org/wiki/Grand_Central_Terminal" target="_blank">Grand Central Terminal, Wikipedia EN</a></li>
-              <li><a href="https://en.wikipedia.org/wiki/Dhoby_Ghaut_MRT_station" target="_blank">Dhoby Ghaut MRT station, Wikipedia EN</a></li>
-              <li><a href="https://en.wikipedia.org/wiki/Tokyo_Station" target="_blank">Tokyo Station, Wikipedia EN</a></li>
             </ol>
           </p>
         </div>
@@ -293,8 +178,8 @@
           <div id="disqus_thread"></div>
           <script>
           var disqus_config = function () {
-          this.page.url = 'https://marcelalanyuwono.com/isochrones.html'; 
-          this.page.identifier = 'isochrone-comment';
+          this.page.url = 'CHANGE'; 
+          this.page.identifier = 'CHANGE';
           };
           (function() { // DON'T EDIT BELOW THIS LINE
           var d = document, s = d.createElement('script');
