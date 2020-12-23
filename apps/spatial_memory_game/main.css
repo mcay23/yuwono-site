@@ -1,0 +1,36 @@
+#gameboard {
+  display: block;
+  margin: auto;
+}
+
+h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#top-container {
+  width: 500px;
+  display: block;
+  margin: auto;
+}
+
+#game-title {
+  text-align: center;
+}
+
+#rules {
+  text-align: center;
+}
+
+#score {
+  color: red;
+}
+
+#status {
+  color: green;
+}
+
+#restart {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
