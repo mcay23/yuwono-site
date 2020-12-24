@@ -1,18 +1,24 @@
 const CELL_SIZE = 100;
 const BOARD_SIZE = 500;
 
-const TEXT_COLOR = "#b55c5c";
-const BOARD_COLOR = "#dad3b9";
-const LOSS_COLOR = "#000066";
+const TEXT_COLOR = "#c73669";
+const HIDE_COLOR = "#c9c4b1";
+const BOARD_COLOR = "#ebe6d5";
+const BORDER_COLOR = "#c08f8f";
+const LOSS_COLOR = "#8f3232";
+const CLICK_COLOR = "#f7f7d0";
 
 export class View {
   constructor() {
     let gameboard = document.getElementById("gameboard");
     let canvas = gameboard.getContext("2d");
-    canvas.font = "50px Arial";
+    canvas.font = "50px Clear Sans";
     canvas.textAlign = "center";
     canvas.textBaseline = "middle";
     canvas.fillStyle = "black";
+    // document.getElementById(
+    //   "gameboard-container"
+    // ).style.backgroundColor = BORDER_COLOR;
     this.canvas = canvas;
   }
 
@@ -31,6 +37,11 @@ export class View {
     this.drawNumbers(gameState);
   }
 
+  hideNumbers() {
+    this.canvas.clearRect(0, 0, BOARD_SIZE, BOARD_SIZE);
+    this.drawGrid(true);
+  }
+
   drawNumbers(gameState) {
     this.canvas.fillStyle = TEXT_COLOR;
     let index = 0;
@@ -47,10 +58,10 @@ export class View {
 
   drawGrid(bool) {
     if (bool) {
-      document.getElementById("gameboard").style.backgroundColor = TEXT_COLOR;
+      document.getElementById("gameboard").style.backgroundColor = HIDE_COLOR;
     }
-    this.canvas.lineWidth = 7;
-    this.canvas.strokeStyle = "#FFFFFF";
+    this.canvas.lineWidth = 8.5;
+    this.canvas.strokeStyle = BORDER_COLOR;
     this.canvas.beginPath();
     for (let i = CELL_SIZE; i <= BOARD_SIZE - 1; i += CELL_SIZE) {
       for (let j = CELL_SIZE; j <= BOARD_SIZE - 1; j += CELL_SIZE) {
@@ -63,13 +74,17 @@ export class View {
     this.canvas.stroke();
   }
 
-  setStatus(message) {
-    let status = document.getElementById("status");
-    status.textContent = message;
+  setErrors(bool) {
+    let errors = document.getElementById("errors");
+    if (bool) {
+      errors.textContent += "X";
+    } else {
+      errors.textContent = "";
+    }
   }
 
   drawCell(x, y) {
-    this.canvas.fillStyle = "#FF0000";
+    this.canvas.fillStyle = CLICK_COLOR;
     this.canvas.beginPath();
     this.canvas.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     this.canvas.fill();

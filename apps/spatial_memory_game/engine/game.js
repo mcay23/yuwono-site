@@ -1,4 +1,5 @@
 const BOARD_SIZE = 5;
+const MAX_ERRORS = 3;
 
 export class Game {
   constructor() {
@@ -14,14 +15,16 @@ export class Game {
       score: 0,
       over: false,
       next: 1,
+      errors: 0,
+      tuples: [],
     };
     this.gameState.board = Array(this.size * this.size).fill(0);
     this.gameState.board = this.generateBoard();
   }
 
   nextPuzzle() {
-    this.gameState.score += 1;
     this.gameState.next = 1;
+    this.gameState.tuples = [];
     this.gameState.board = Array(this.size * this.size).fill(0);
     this.gameState.board = this.generateBoard();
   }
@@ -86,14 +89,21 @@ export class Game {
     if (this.getRows()[y][x] == this.gameState.next) {
       if (this.getRows()[y][x] == this.getWinTarget(this.gameState.score)) {
         // next puzzle
+        this.gameState.score += 1;
         this.updateListeners("move", "next");
       } else {
         this.gameState.next += 1;
+        this.gameState.tuples.push([x, y]);
         this.updateListeners("move", "correct");
       }
     } else {
-      this.gameState.over = true;
-      this.updateListeners("loss");
+      this.gameState.errors += 1;
+      if (this.gameState.errors === MAX_ERRORS) {
+        this.gameState.over = true;
+        this.updateListeners("loss", "over");
+      } else {
+        this.updateListeners("loss", "continue");
+      }
     }
   }
 
@@ -126,10 +136,6 @@ export class Game {
     this.moveListeners.push(callback);
   }
 
-  onWin(callback) {
-    this.winListeners.push(callback);
-  }
-
   onLose(callback) {
     this.loseListeners.push(callback);
   }
@@ -139,13 +145,9 @@ export class Game {
       this.moveListeners.forEach((element) => {
         element(statusMessage);
       });
-    } else if (event == "win") {
-      this.winListeners.forEach((element) => {
-        element(this.gameState);
-      });
     } else if (event == "loss") {
       this.loseListeners.forEach((element) => {
-        element(this.gameState);
+        element(statusMessage);
       });
     }
   }
@@ -155,5 +157,20 @@ export class Game {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+  }
+
+  isClicked(x, y) {
+    let flag = false;
+    this.gameState.tuples.map((e) => {
+      if (e[0] == x && e[1] == y) {
+        flag = true;
+      }
+    });
+    return flag;
+  }
+
+  isFirst(x, y) {
+    console.log(this.getRows()[y][x] === 1);
+    return this.getRows()[y][x] === 1;
   }
 }
