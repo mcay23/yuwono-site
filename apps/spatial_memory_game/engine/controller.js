@@ -95,6 +95,10 @@ export class Controller {
       setTimeout(() => {
         this.game.nextPuzzle();
         this.view.update(this.game.getGameState());
+        this.view.updateSplits(
+          Math.floor(this.elapsedTime / 1000),
+          this.game.gameState.score
+        );
       }, 80);
     }
   };

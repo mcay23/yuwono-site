@@ -32,7 +32,7 @@ body {
 
 .stopwatch {
   font-family: "Clear Sans", sans-serif;
-  color: red;
+  color: rgb(216, 11, 11);
 }
 
 .stopwatch-split {
