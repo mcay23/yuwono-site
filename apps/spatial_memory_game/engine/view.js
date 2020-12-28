@@ -1,6 +1,3 @@
-const CELL_SIZE = 100;
-const BOARD_SIZE = 500;
-
 const TEXT_COLOR = "#c73669";
 const HIDE_COLOR = "#c9c4b1";
 const BOARD_COLOR = "#ebe6d5";
@@ -10,15 +7,23 @@ const CLICK_COLOR = "#f7f7d0";
 
 export class View {
   constructor() {
+    let canvas_element = document.createElement("canvas");
+    canvas_element.setAttribute("id", "gameboard");
+    canvas_element.height = 500;
+    canvas_element.width = 500;
+    document.getElementById("gameboard-container").appendChild(canvas_element);
+
+    this.CELL_SIZE = Math.floor(
+      document.getElementById("gameboard").offsetHeight / 5
+    );
+    this.BOARD_SIZE = document.getElementById("gameboard").offsetHeight;
+
     let gameboard = document.getElementById("gameboard");
     let canvas = gameboard.getContext("2d");
     canvas.font = "50px Clear Sans";
     canvas.textAlign = "center";
     canvas.textBaseline = "middle";
     canvas.fillStyle = "black";
-    // document.getElementById(
-    //   "gameboard-container"
-    // ).style.backgroundColor = BORDER_COLOR;
     this.canvas = canvas;
   }
 
@@ -32,21 +37,29 @@ export class View {
       document.getElementById("gameboard").style.backgroundColor = LOSS_COLOR;
     }
 
-    this.canvas.clearRect(0, 0, BOARD_SIZE, BOARD_SIZE);
+    this.canvas.clearRect(0, 0, this.BOARD_SIZE, this.BOARD_SIZE);
     this.drawGrid(false);
     this.drawNumbers(gameState);
   }
 
   hideNumbers() {
-    this.canvas.clearRect(0, 0, BOARD_SIZE, BOARD_SIZE);
+    this.canvas.clearRect(0, 0, this.BOARD_SIZE, this.BOARD_SIZE);
     this.drawGrid(true);
   }
 
   drawNumbers(gameState) {
     this.canvas.fillStyle = TEXT_COLOR;
     let index = 0;
-    for (let i = CELL_SIZE / 2; i <= BOARD_SIZE; i += CELL_SIZE) {
-      for (let j = CELL_SIZE / 2; j <= BOARD_SIZE; j += CELL_SIZE) {
+    for (
+      let i = this.CELL_SIZE / 2;
+      i <= this.BOARD_SIZE;
+      i += this.CELL_SIZE
+    ) {
+      for (
+        let j = this.CELL_SIZE / 2;
+        j <= this.BOARD_SIZE;
+        j += this.CELL_SIZE
+      ) {
         let num = gameState.board[index];
         if (num != 0) {
           this.canvas.fillText(num, j, i);
@@ -63,12 +76,20 @@ export class View {
     this.canvas.lineWidth = 8.5;
     this.canvas.strokeStyle = BORDER_COLOR;
     this.canvas.beginPath();
-    for (let i = CELL_SIZE; i <= BOARD_SIZE - 1; i += CELL_SIZE) {
-      for (let j = CELL_SIZE; j <= BOARD_SIZE - 1; j += CELL_SIZE) {
+    for (
+      let i = this.CELL_SIZE;
+      i <= this.BOARD_SIZE - 1;
+      i += this.CELL_SIZE
+    ) {
+      for (
+        let j = this.CELL_SIZE;
+        j <= this.BOARD_SIZE - 1;
+        j += this.CELL_SIZE
+      ) {
         this.canvas.moveTo(i, 0);
-        this.canvas.lineTo(i, BOARD_SIZE);
+        this.canvas.lineTo(i, this.BOARD_SIZE);
         this.canvas.moveTo(0, j);
-        this.canvas.lineTo(BOARD_SIZE, j);
+        this.canvas.lineTo(this.BOARD_SIZE, j);
       }
     }
     this.canvas.stroke();
@@ -86,8 +107,50 @@ export class View {
   drawCell(x, y) {
     this.canvas.fillStyle = CLICK_COLOR;
     this.canvas.beginPath();
-    this.canvas.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    this.canvas.rect(
+      x * this.CELL_SIZE,
+      y * this.CELL_SIZE,
+      this.CELL_SIZE,
+      this.CELL_SIZE
+    );
     this.canvas.fill();
     this.drawGrid(true);
+  }
+
+  setTime(str) {
+    let el = document.getElementById("elapsed");
+    el.innerHTML = str;
+  }
+
+  updateSplits(time, score) {
+    if (time === 30) {
+      let second_30 = document.getElementById("split-2");
+      second_30.innerHTML = score;
+    } else if (time === 60) {
+      let second_60 = document.getElementById("split-3");
+      second_60.innerHTML = score;
+    } else if (time === 120) {
+      let second_120 = document.getElementById("split-4");
+      second_120.innerHTML = score;
+    } else if (time === 180) {
+      let second_180 = document.getElementById("split-5");
+      second_180.innerHTML = score;
+    } else {
+      let current = document.getElementById("split-1");
+      current.innerHTML = score;
+    }
+  }
+
+  resetSplits() {
+    let current = document.getElementById("split-1");
+    let second_30 = document.getElementById("split-2");
+    let second_60 = document.getElementById("split-3");
+    let second_120 = document.getElementById("split-4");
+    let second_180 = document.getElementById("split-5");
+    current.innerHTML = "-";
+    second_30.innerHTML = "-";
+    second_60.innerHTML = "-";
+    second_120.innerHTML = "-";
+    second_180.innerHTML = "-";
   }
 }

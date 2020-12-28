@@ -1,5 +1,5 @@
 const BOARD_SIZE = 5;
-const MAX_ERRORS = 3;
+const MAX_ERRORS = 5;
 
 export class Game {
   constructor() {
@@ -17,6 +17,7 @@ export class Game {
       next: 1,
       errors: 0,
       tuples: [],
+      started: false,
     };
     this.gameState.board = Array(this.size * this.size).fill(0);
     this.gameState.board = this.generateBoard();
@@ -86,6 +87,9 @@ export class Game {
   }
 
   move(x, y) {
+    if (!this.gameState.started) {
+      this.gameState.started = true;
+    }
     if (this.getRows()[y][x] == this.gameState.next) {
       if (this.getRows()[y][x] == this.getWinTarget(this.gameState.score)) {
         // next puzzle
@@ -108,8 +112,12 @@ export class Game {
   }
 
   getWinTarget(score) {
-    let temp = Math.floor(score / 4) + 4;
-    if (temp > BOARD_SIZE * BOARD_SIZE) {
+    // difficulty curve function : 3-3-3-4-4-4-4-5-5-5-5-5, etc.
+    let temp = Math.ceil(-0.5 + Math.sqrt(2 * (score + 4) - 0.25));
+    if (score <= 2) {
+      return 3;
+    }
+    if (temp > 25) {
       return 25;
     }
     return temp;
@@ -141,11 +149,11 @@ export class Game {
   }
 
   updateListeners(event, statusMessage) {
-    if (event == "move") {
+    if (event === "move") {
       this.moveListeners.forEach((element) => {
         element(statusMessage);
       });
-    } else if (event == "loss") {
+    } else if (event === "loss") {
       this.loseListeners.forEach((element) => {
         element(statusMessage);
       });
@@ -170,7 +178,6 @@ export class Game {
   }
 
   isFirst(x, y) {
-    console.log(this.getRows()[y][x] === 1);
     return this.getRows()[y][x] === 1;
   }
 }

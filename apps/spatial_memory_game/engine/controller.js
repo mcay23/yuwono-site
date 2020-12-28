@@ -1,11 +1,12 @@
-const CELL_SIZE = 100;
-
 export class Controller {
   constructor(g, v) {
     this.game = g;
     this.view = v;
 
+    this.CELL_SIZE = document.getElementById("gameboard").offsetHeight / 5;
+
     this.view.update(g.getGameState());
+    this.view.resetSplits();
     this.game.onMove(this.processMove);
     this.game.onLose(this.processLoss);
 
@@ -16,6 +17,8 @@ export class Controller {
     this.clicked = false;
     this.allowClick = true;
 
+    this.startTimer = null;
+    this.elapsedTime = 0;
     this.restart_button = document.getElementById("restart");
 
     let restart = document.getElementById("restart");
@@ -26,18 +29,24 @@ export class Controller {
         this.clicked = false;
         g.setupNewGame();
         v.update(g.getGameState());
+        clearInterval(this.startTimer);
+        v.setTime("00:00");
         v.setErrors(false);
+        v.resetSplits();
+        this.startTimer = Date.now();
       },
       false
     );
+    let container = document.getElementById("gameboard-col");
 
-    let canvas = document.getElementById("gameboard");
-    let elemLeft = canvas.offsetLeft + canvas.clientLeft;
-    let elemTop = canvas.offsetTop + canvas.clientTop;
-
-    canvas.addEventListener(
-      "click",
+    container.addEventListener(
+      "mousedown",
       (e) => {
+        let canvas = document.getElementById("gameboard");
+        let elemLeft =
+          container.offsetLeft + container.clientLeft + canvas.offsetLeft;
+        let elemTop =
+          container.offsetTop + container.clientTop + canvas.offsetTop;
         if (this.allowClick) {
           if (this.game.gameState.over) {
             // this.clicked = false;
@@ -48,10 +57,16 @@ export class Controller {
             let x = e.pageX - elemLeft;
             let y = e.pageY - elemTop;
             if (x <= 500 && y <= 500 && x >= 0 && y >= 0) {
-              let x_index = Math.floor(x / CELL_SIZE);
-              let y_index = Math.floor(y / CELL_SIZE);
+              let x_index = Math.floor(x / this.CELL_SIZE);
+              let y_index = Math.floor(y / this.CELL_SIZE);
               if (!this.clicked) {
                 if (this.game.isFirst(x_index, y_index)) {
+                  if (
+                    this.game.gameState.score === 0 &&
+                    this.game.gameState.errors == 0
+                  ) {
+                    this.start();
+                  }
                   this.clicked = true;
                   v.hideNumbers();
                   this.view.drawCell(x_index, y_index);
@@ -65,7 +80,7 @@ export class Controller {
           }
         }
       },
-      false
+      true
     );
   }
 
@@ -89,6 +104,8 @@ export class Controller {
     this.clicked = false;
     this.view.setErrors(true);
     if (status === "over") {
+      clearInterval(this.startTimer);
+      this.startTimer = null;
       this.view.update(this.game.getGameState(), true);
       this.restart_button.classList.add("button-glow");
     } else if (status === "continue") {
@@ -107,5 +124,28 @@ export class Controller {
     return "#000000".replace(/0/g, function () {
       return (~~(Math.random() * 16)).toString(16);
     });
+  }
+
+  start() {
+    let startTime = Date.now();
+    this.startTimer = setInterval((start) => {
+      this.elapsedTime = Date.now() - startTime;
+      this.view.setTime(this.timeToString(this.elapsedTime));
+      let secondsElapsed = Math.floor(this.elapsedTime / 1000);
+      this.view.updateSplits(secondsElapsed, this.game.gameState.score);
+    }, 1000);
+  }
+
+  timeToString(time) {
+    let diffInHrs = time / 3600000;
+    let hh = Math.floor(diffInHrs);
+    let diffInMin = (diffInHrs - hh) * 60;
+    let mm = Math.floor(diffInMin);
+    let diffInSec = (diffInMin - mm) * 60;
+    let ss = Math.floor(diffInSec);
+    let formattedMM = mm.toString().padStart(2, "0");
+    let formattedSS = ss.toString().padStart(2, "0");
+
+    return `${formattedMM}:${formattedSS}`;
   }
 }
