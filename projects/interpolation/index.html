@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172408096-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-172408096-1');
+    </script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href='../../css/main.css'>
+    <link rel="stylesheet" href='../../css/article.css'>
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Balthazar' rel='stylesheet'>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">    <title>ProjectSpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/favicon.ico"/>
+    <title>ProjectSpace</title>
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" id="main-navbar">
+      <a class="navbar-brand absolute d-none d-md-block" href="javascript:undefined">ProjectSpace</a>
+      <div class="absolute center-absolute">
+        <a class="navbar-brand d-block d-md-none center" id="navbar-center-brand" href="javascript:undefined">ProjectSpace</a>
+      </div>      
+      <div class="navbar-collapse collapse" id="navbar">
+        <div class="navbar-container">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-md-none">
+                <p class="logo-text">ProjectSpace</p>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../../">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="../../about/">About</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="../../contact/">Contact</a>
+              </li>
+              <li class="nav-item d-block d-md-none">
+                <a class="nav-link" href="https://www.linkedin.com/in/marcel-alan-yuwono-6766211a1/" target="_blank">Connect on LinkedIn</a>
+              </li>
+          </ul>
+          </div>
+      </div>
+      <div class="toggler ml-auto">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" onclick="toggle()">
+          <span class="navbar-toggler-icon"></span>
+        </button> 
+      </div>
+      <ul class="navbar-nav absolute right-absolute d-none d-md-block">
+          <li class="nav-item btn-small">
+            <a href="https://www.linkedin.com/in/marcel-alan-yuwono-6766211a1/" target="_blank">
+              <button type="button" class="btn btn-outline-info">Connect on LinkedIn</button>
+            </a>
+          </li>
+      </ul>
+    </nav>
+    <div class="row section-article-top">
+      <div class="col-sm-12 col-md-9 col-xl-8">
+        <h2>Video Interpolation & Colorization</h2>
+        <p>
+          Film and cameras been around since at least the late 1800s. But cameras and recorders back then 
+          didn't always have the same quality as they do today. Old videos are typically clunkier, run with 
+          less frames per second, and are black and white. However, with rise of machine learning and 
+          neural networks we can restore old film to look like newer videos. 
+        <br>
+      </div>
+    </div>
+    <div class="section-article-body">
+      <div class="row">
+        <div class="col-sm-12 col-md-9 col-xl-8">
+          <p style="text-align:left; color: gray; font-family:Open Sans, serif">
+            Marcel Yuwono
+            <span style="float:right;">
+              31 July 2020
+            </span>
+          </p>
+          <br>
+          <h3>Motivation</h3>
+          <p>
+            I was reading through some machine learning articles and came across <a href="https://sites.google.com/view/wenbobao/dain" target="_blank">DAIN.</a>
+            DAIN stands for Depth-Aware Video Frame Interpolation. Frame interpolation is a machine learning method to 
+            increase FPS in videos, creating a smoother result. A few researchers from Shanghai Jian Tong University 
+            frame interpolation method that seemed to perform better than current models. I decided to test it out.
+          </p>
+          <br>
+          <h3>Frame Interpolation</h3>
+          <p>
+            The idea behind frame interpolation is quite simple. First, we separate a video into its component frames.
+            Next, we take 2 adjacent frames and generate a new in-between frame using the information from the two frames. 
+            We repeat this process for every adjacent frames, and the result is a video with effectively double the number of
+            frames. Played at the same duration, this doubles the FPS. If we want, we can repeat the process to keep
+            doubling the FPS of the video.
+          </p>
+          <p>
+            To illustrate, imagine a 2-frame video of a ball rolling down a slope. The first frame is the ball on the 
+            top of the slope, and the second frame is the ball at the bottom of the slope. When we run frame interpolation, 
+            the two frames are read, and a new frame is constructed (in between the 2 original frames) of the ball in the 
+            middle of the slope. 
+          </p>
+          <p>          
+            The neural network recognizes that there is an object moving between two frames, and uses that
+            information to infer where the object may be between the timeframe. If we repeat this process, we can populate more
+            frames of the ball on different heights on the slope. Finally, we collate all the frames into a new video, which 
+            will have smoother animation.
+          </p>  
+          <br>
+          <h3>DAIN</h3>
+          <p>
+            DAIN works by analyzing the features and characteristics of the two input frames and creating 
+            intermediate layers and flows. Most notably, it creates a depth map from the source frames that detects 
+            which objects are closer and more important and uses that information to interpolate the new frame.
+          </p>
+          <p>
+            Here's what the process looks like:
+          </p>
+          <br>
+          <div class="code-block-container">
+            <div class="code-block">
+              <br>
+              <p>
+                Click the image to open in a new tab.
+              </p>
+              <br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 graph-img-boarding">
+              <a href="process.png" target="_blank">
+                <img src="process.png"></img>
+              </a>
+            </div>
+          </div>
+          <p>
+            This image is taken directly from their paper, which explains the process in greater detail.
+            You can access the paper <a href="https://arxiv.org/abs/1904.00830" target="_blank">here.</a>
+          </p>
+          <br>
+          <h3>Colorization</h3>
+          <p>
+            I used <a href="https://github.com/jantic/DeOldify#why-three-models" target="_blank">DeOldify</a>
+            and their pre-trained video model to colorize the videos. DeOldify's model is trained on old images,
+            which is suitable for our use. 
+          </p>
+          <br>
+          <h3>Results</h3>
+          <p>
+            Here's the sample video I used, courtesy of <a href="https://www.youtube.com/channel/UCpUBuSn_Io93AMpOSw88afQ" target="_blank">guy jones</a>
+            on YouTube:
+          </p>
+          <br>
+          <video autoplay loop controls muted width=100%>
+            <source src="train_source.mp4" type="video/mp4">
+            Your browser does not support playing videos.
+          </video>
+          <br><br>
+          <p>
+            I colorized the video first since interpolating first would mean I would have to colorize double the 
+            number of frames. Both colorizing and interpolating is quite GPU intensive. On my laptop with a dedicated
+            GPU, colorizing the 58-second video of 1733 frames took around 30 minutes and the interpolation 
+            took around 2.5 hours.
+          </p>
+          <p>
+            Here's the result of the colorization:
+          </p>
+          <br>
+          <div class="container">
+            <video autoplay loop controls muted width=100%>
+              <source src="train_color_nodain.mp4" type="video/mp4">
+              Your browser does not support playing videos.
+            </video>
+          </div>
+          <br><br>
+          <p>
+            Next, we run DAIN to make the video smoother. The source file is 30 FPS, so we do a 2x interpolation
+            to get 60 FPS.
+          </p>
+          <br>
+          <div class="container">
+            <video autoplay loop controls muted width=100%>
+              <source src="train_color_dain.mp4" type="video/mp4">
+              Your browser does not support playing videos.
+            </video>
+          </div>
+          <br><br>
+          <p>
+            Next, I ran the colorization + interpolation on a different video, a Charlie Chaplin clip: 
+          </p>
+          <br>
+          <div class="container">
+            <video autoplay loop controls muted width=100%>
+              <source src="chaplin_source.mp4" type="video/mp4">
+              Your browser does not support playing videos.
+            </video>
+          </div>
+          <br><br>
+          <p>
+            This time, I trimmed the video to around 20 seconds so I could interpolate faster. The source video is
+            25 FPS, then 2x interpolated to yield 50 FPS. The original video is of a higher quality than the 
+            train video, and the results are more impressive:
+          </p>
+          <br>
+          <div class="container">
+            <video autoplay loop controls muted width=100%>
+              <source src="chaplin_color_dain.mp4" type="video/mp4">
+              Your browser does not support playing videos.
+            </video>
+          </div>
+          <br><br>
+          <h3>Final Thoughts</h3>
+          <p>
+            DAIN worked incredibly well with the two videos I tested. Even today, many content and movies these days still run
+            on 30 FPS, DAIN can enchance our viewing experience with these videos. Frame interpolation is a very intensive 
+            task, but in the near future, maybe we will have TVs that can interpolate videos in real-time and we can watch
+            movies with hundreds of FPS.
+          </p>
+          <p>
+            I tried upscaling the video with <a href="https://github.com/xinntao/ESRGAN" target="_blank">ESRGAN</a>
+            to achieve better resolution but the results had minimal impact when operated on select frames. 
+            It would've taken another few hours to process the videos with ESRGAN so I decided to forgo the process entirely.
+          </p>
+          <br>
+          <h3>Next Steps</h3>
+          <p>
+            The colorization worked quite quickly but the colors weren't as vibrant as I had wanted. 
+            I intend to try other colorization models to find ones that give more colorful results.
+          </p>
+          <br>
+          <h3>References</h3>
+          <p>
+            <ol>
+              <li>Bao, Wenbo et al. "Depth-Aware Video Frame Interpolation." IEEE Conference on Computer Vision and Pattern Recognition. 2019. <a href="https://sites.google.com/view/wenbobao/dain" target="_blank">Link.</a></li>
+              <li>"1897 - Arrival of a Two-Stage Train in France (speed corrected w/ added sound)." Youtube, uploaded by guy jones, Jul 9 2017. <a href="https://www.youtube.com/watch?v=qsDqFx6spas" target="_blank">Link.</a></li>
+              <li>"Charlie Chaplin - Modern Times - Roller Skating Scene." Youtube, uploaded by Charlie Chaplin, Oct 4 2016. <a href="https://www.youtube.com/watch?v=kPcEFHA3X0c" target="_blank">Link.</a></li>
+            </ol>
+          </p>
+        </div>
+      </div>
+      <br><br>
+    </div>
+    <br><br>
+    <footer class="footer">
+      <div class="footer-container bg-dark">
+        <div class="footer-group">
+          <h1 class="footer-text">Let's Connect.</h1>
+          <div class="icon-group">
+            <a href="https://www.facebook.com/marcel.yuwono.90/" target="_blank"><i class="fa fa-facebook-square" id="fb-icon"></i></a>
+            <a href="https://github.com/mcay23" target="_blank"><i class="fa fa-github-square" id="github-icon"></i></i></a>
+            <a href="https://www.linkedin.com/in/marcel-alan-yuwono-6766211a1/" target="_blank"><i class="fa fa-linkedin-square" id="linkedin-icon""></i></i></a>        
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="../../js/main.js"></script>
+</html>
